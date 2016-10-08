@@ -1,0 +1,9 @@
+hive > select * from art limit 10;
+hive > select artist, country from art where published_date > '1998-01-01';
+hive > select artist, country from art where published_date > '1998-01-01' and country is not null;
+hive > select artist, country from art where published_date > '1998-01-01' and country is not null order by published_date desc;
+hive > select artist, country from art where published_date > '1998-01-01' and country is not null sort by publish_date desc;
+hive > select artist, genre from art where (genre = 'impressionism' or genre = 'realism') and country is not null distributed by genre;
+hive > select artist, genre from art where (genre = 'impressionism' or genre = 'realism') and country is not null distributed by genre sort by genre;
+hive > select artist, genre from art where (genre = 'impressionism' or genre = 'realism') and country is not null distributed by genre sort by genre, country;
+hive > select artist, genre from art where (genre = 'impressionism' or genre = 'realism') and country is not null cluster by genre, country;
