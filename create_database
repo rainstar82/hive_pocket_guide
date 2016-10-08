@@ -1,2 +1,2 @@
 create database if not exists art;
-use art
+use art;
