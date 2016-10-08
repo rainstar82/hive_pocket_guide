@@ -1,0 +1,12 @@
+hive > create database if not exists basics;
+hive > use basis;
+hive > create table if not exists art (
+     > id int,
+     > name string,
+     > artist string,
+     > country string,
+     > publihed_date timestamp )
+     > row format delimited fields termonated by '\t';
+hive > load data local inpath 'basics/art_data.tsv' overwrite int table art;
+
+hive > drop database basics cascade;
