@@ -4,6 +4,7 @@ hive > create table if not exists art (
      > id int,
      > name string,
      > artist string,
+     > genre string,
      > country string,
      > publihed_date timestamp )
      > row format delimited fields termonated by '\t';
