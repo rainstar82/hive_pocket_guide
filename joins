@@ -1,0 +1,19 @@
+hive > create table if not exists art (
+     > id int,
+     > name string,
+     > artist string,
+     > genre string,
+     > country string,
+     > publihed_date timestamp )     
+     > row format delimited fields termiated by '\t';
+hive > load data local inpath 'basics/art_data.tsv' overwrite int table art;
+
+hive > create table if not exists country (
+     > id int,
+     > country string,
+     > iso code string )
+     > row format delimited fields terminated by termiated by '\t';
+hive > load data local inpath 'basics/country_data.tsv' overwrite int table country;
+
+hive > select * from country join art on country.id = art.country;
+     
