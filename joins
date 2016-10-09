@@ -4,16 +4,22 @@ hive > create table if not exists art (
      > artist string,
      > genre string,
      > country string,
-     > publihed_date timestamp )     
+     > publihed_date timestamp,
+     > price int)     
      > row format delimited fields termiated by '\t';
 hive > load data local inpath 'basics/art_data.tsv' overwrite int table art;
 
 hive > create table if not exists country (
      > id int,
      > country string,
-     > iso code string )
-     > row format delimited fields terminated by termiated by '\t';
-hive > load data local inpath 'basics/country_data.tsv' overwrite int table country;
+     > iso_code string )
+     > row format delimited fields terminated by termiated by '\t'; 
+     
+hive > select a.id, a.country, c.iso_code from country c join art a on (c.country = a.country);
+hive > select a.id, a.country, c.iso_code from country c left outer join art a on (c.country = a.country);
+hive > select a.id, a.country, c.iso_code from country c full outer join art a on (c.country = a.country);
+hive > select a.id, a.country, c.iso_code from country c right outer join art a on (c.country = a.country);
+hive > select * from country cross join art;
+ 
 
-hive > select * from country join art on country.id = art.country;
      
