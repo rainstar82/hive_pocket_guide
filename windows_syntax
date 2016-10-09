@@ -1,0 +1,53 @@
+PARTITION BY with one partitioning column, no ORDER BY or window specification
+SELECT a, COUNT(b) OVER (PARTITION BY c)
+FROM T;
+
+PARTITION BY with two partitioning columns, no ORDER BY or window specification
+SELECT a, COUNT(b) OVER (PARTITION BY c, d)
+FROM T
+
+PARTITION BY with one partitioning column, one ORDER BY column, and no window specification
+SELECT a, SUM(b) OVER (PARTITION BY c ORDER BY d)
+FROM T;
+
+PARTITION BY with partitioning, ORDER BY, and window specification
+SELECT a, SUM(b) OVER (PARTITION BY c ORDER BY d ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)
+FROM T;
+
+SELECT a, AVG(b) OVER (PARTITION BY c ORDER BY d ROWS BETWEEN 3 PRECEDING AND CURRENT ROW)
+FROM T;
+
+SELECT a, AVG(b) OVER (PARTITION BY c ORDER BY d ROWS BETWEEN 3 PRECEDING AND 3 FOLLOWING)
+FROM T;
+
+SELECT a, AVG(b) OVER (PARTITION BY c ORDER BY d ROWS BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING)
+FROM T;
+
+There can be multiple OVER clauses in a single query. A single OVER clause only applies to the immediately preceding function call. In this example, the first OVER clause applies to COUNT(b) and the second OVER clause applies to SUM(b):
+
+SELECT  a, COUNT(b) OVER (PARTITION BY c), 
+SUM(b) OVER (PARTITION BY c)
+FROM T;
+
+
+Aliases can be used as well, with or without the keyword AS:
+SELECT  a, COUNT(b) OVER (PARTITION BY c) AS b_count, SUM(b) OVER (PARTITION BY c) b_sum
+FROM T;
+
+WINDOW clause
+SELECT a, SUM(b) OVER w
+FROM T
+WINDOW w AS (PARTITION BY c ORDER BY d ROWS UNBOUNDED PRECEDING);
+
+LEAD using default 1 row lead and not specifying default value
+SELECT a, LEAD(a) OVER (PARTITION BY b ORDER BY C ROWS BETWEEN CURRENT ROW AND 1 FOLLOWING)
+FROM T;
+
+LAG specifying a lag of 3 rows and default value of 0
+SELECT a, LAG(a, 3, 0) OVER (PARTITION BY b ORDER BY C ROWS 3 PRECEDING)
+FROM T;
+
+Distinct counting for each partition
+SELECT a, COUNT(distinct a) OVER (PARTITION BY b)
+FROM T;
+
