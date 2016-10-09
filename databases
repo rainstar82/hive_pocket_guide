@@ -10,4 +10,5 @@ hive > create table if not exists art (
      > row format delimited fields termonated by '\t';
 hive > load data local inpath 'basics/art_data.tsv' overwrite int table art;
 
+
 hive > drop database basics cascade;
