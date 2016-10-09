@@ -1,11 +1,12 @@
 hive > create table if not exists art (
-  > id int,     > name string,
-  > artist string,
-  > genre string,
-  > country string,
-  > publihed_date timestamp,
-  > price int )
-  > row format delimited fields termonated by '\t';
+     > id int,
+     > name string,
+     > artist string,
+     > genre string,
+     > country string,
+     > publihed_date timestamp,
+     > price int )
+     > row format delimited fields termonated by '\t';
 hive > load data local inpath 'basics/art_data.tsv' overwrite int table art;
 
 select id, genre, price, min(price) over (partition by genre) as m from art;
