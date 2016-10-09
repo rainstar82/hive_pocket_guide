@@ -1,0 +1,16 @@
+hive > create table if not exists art (
+     > id int,
+     > name string,
+     > artist string,
+     > genre string,
+     > country string,
+     > publihed_date timestamp )
+     > row format delimited fields termonated by '\t';
+
+hive > load data local inpath 'basics/art_data.tsv' overwrite int table art;
+
+hive > select published_date, country, n, avg(n), over (partition by published_date, order by published_date
+     > rows between 365 preceeding and current row) as navg
+     > from ( select published_date, country, (count(published_date)) as n from pubs
+     > group by published_date, country) pubs
+     
