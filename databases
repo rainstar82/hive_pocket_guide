@@ -1,5 +1,5 @@
 hive > create database if not exists basics;
-hive > use basis;
+hive > use basics;
 hive > create table if not exists art (
      > id int,
      > name string,
