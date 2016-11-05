@@ -11,5 +11,5 @@ hive > load data local inpath 'basics/art_data.tsv' overwrite int table art;
      
 
 hive > select published_date, country, n, rank() over (partition by published_date order by n desc) as day_rank from 
-      > (select published_date, country, count(published_date) as n from art group by published_date, country, ordered by published_date, country ) pubs
+      > (select published_date, country, count(published_date) as n from art group by published_date, country, order by published_date, country ) pubs
       > order by published_date, country;
