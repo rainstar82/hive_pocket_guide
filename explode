@@ -1,0 +1,10 @@
+We can convert the data in an array to individual recoreds using the 'explode' function.
+
+select explode(language) as language from published_languages;
+
+language
+English
+French
+German
+Russian
+
