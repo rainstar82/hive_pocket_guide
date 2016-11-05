@@ -1,0 +1,20 @@
+Bucketig is a way to divide data by values, similar to partitioning. Bucketing allows the distribution of the records across a pre-defined number of buckets. This will allow jobs to use sample of data. Joins are faster if all records are bucketed on join column.
+
+create table art_book_buckets (
+isbn string,
+title string,
+published_year int,
+language string)
+clustered by isbn into 10 buckets;
+
+Columns selected for bucketing should have well distrubuted values.
+
+Note: Remeber to set hive.enforce.bucketing = true so that the number of reducers are set to the number of buckets in the table.
+
+insert overwrite table art_book_buckets
+select * from art_books;
+
+10% data sampling from bucketed table
+
+select * from art_books_buckets
+tablesample (bucket 1 out of 10 on isbn);
