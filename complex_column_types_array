@@ -1,6 +1,6 @@
 Array: Ordered list of values, all of the same type
 
-If we want to save and retrieve a group of information together that have the sasme type, without having to use a separate row of data for each or keeping the data in another table, 'arrays' are useful. For example if a book is published in several languages, we can keep them in an array field.
+If we want to save and retrieve a group of information together that have the same type, without having to use a separate row of data for each or keeping the data in another table, 'arrays' are useful. For example if a book is published in several languages, we can keep them in an array field.
 
 Art History   [English, French]
 Colurs        [English, German, French]
