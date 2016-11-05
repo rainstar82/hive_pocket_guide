@@ -1,1 +1,26 @@
-Map: Key-Value pairs, each of the same type
+Map: Key-Value pairs, the same type for each key and each value
+
+If we want to save and retrieve a group of information together and have them with a key such as label, without having to use a separate row of data for each or keeping the data in another table, 'maps' are useful. For example if a book is published in several languages in different years, we can keep the year in an map field together with a key for language.
+
+Art History   {EN:1998, FR:2000}
+Colurs        [EN:2001, DR:2005, FR:2010}
+Artists       {EN:2007, RU:2011}
+
+select title, year['FR'] as year_fr from published_year;
+
+Art History   2000
+Colours       2010
+Artists       null
+
+hive >   create table   published_year (
+     >   title string,
+     >   year map<string:int>
+     >   row format delimited
+     >   fields terminated by ','
+     >   collection items terminated by '|'
+     >   map keys terminated by ':';     
+     
+Data File will look like as below:
+Art History, EN:1998 | FR:2000
+Colours, EN:2001 | DR:2005 | FR:2010
+Artists, EN:2007 | RU:2011
