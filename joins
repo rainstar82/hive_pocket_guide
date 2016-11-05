@@ -14,6 +14,7 @@ hive > create table if not exists country (
      > country string,
      > iso_code string )
      > row format delimited fields terminated by termiated by '\t'; 
+hive > load data local inpath 'basics/country_data.tsv' overwrite int table country;
      
 hive > select a.id, a.country, c.iso_code from country c join art a on (c.country = a.country);
 hive > select a.id, a.country, c.iso_code from country c left outer join art a on (c.country = a.country);
