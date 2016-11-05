@@ -1,0 +1,8 @@
+The 'size' function returns the number of items in a collection (array or map).
+
+select title, size(year) from published_year;
+
+Art History 2
+Colours     3
+Artists     2
+
