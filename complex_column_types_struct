@@ -1,1 +1,33 @@
 Struct: Named fields, of possible mixed types
+
+If we want to save and retrieve a group of information together and each item has different type, 'structs' are useful. 
+
+Art History   {auhor: mr a
+              year_published:2000
+              language: English}
+Colurs        {author: miss b
+              year_published:2001
+              laguage:French}
+Artists       {author:mrs c
+               year_published:2011
+               language: Russian}
+
+select title, details.author, details.language from art_books;
+
+Art History   mr a      English
+Colours       miss b    French
+Artists       mrs c     Russian
+
+hive >   create table   art_books (
+     >   title string,
+     >   details struct<author:string, year_published:int, language:string>)
+     >   row format delimited
+     >   fields terminated by ','
+     >   collection items terminated by '|';
+
+
+Data File will look like as below:
+
+Art History, mr a | 2000 | English
+Colours, miss b | 2005 | French
+Artists, mrs c | 2011 | Russian
