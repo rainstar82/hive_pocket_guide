@@ -1,0 +1,26 @@
+Array: Ordered list of values, all of the same type
+
+If we want to save and retrive a group of information together that have the sasme type, without having to use a separate row of data for each or keeping the data in another table, 'arrays' are useful. For example if a book is published in several languages, we can keep them in an array field.
+
+Art History   [English, French]
+Colurs        [English, German, French]
+Artists       [English, Russian]
+
+Select title, language[0], language[1] from published_languages;
+
+Art History   English   French
+Colours       English   German
+Artists       English   Russian
+
+hive >   Create Table published_languages (
+     >   title STRING,
+     >   language ARRAY<STRING>
+     >   Row FORMAT DELIMITED
+     >   FIELDS TERMINATED BY ','
+     >   COLLECTION ITEMS TERMINATED BY '|';
+     
+Data File
+
+Art History, English | French
+Colours, English | German | French
+Artists, English | Russian
