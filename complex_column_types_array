@@ -12,14 +12,14 @@ Art History   English   French
 Colours       English   German
 Artists       English   Russian
 
-hive >   Create Table published_languages (
-     >   title STRING,
-     >   language ARRAY<STRING>
-     >   Row FORMAT DELIMITED
-     >   FIELDS TERMINATED BY ','
-     >   COLLECTION ITEMS TERMINATED BY '|';
+hive >   create table   published_languages (
+     >   title string,
+     >   language array<string>
+     >   row format delimited
+     >   fields terminated by ','
+     >   collection items terminated by '|';
      
-Data File
+Data File will look like as below:
 
 Art History, English | French
 Colours, English | German | French
