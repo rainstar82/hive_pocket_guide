@@ -7,7 +7,7 @@ hive > create table if not exists art (
      > genre string,
      > country string,
      > publihed_date timestamp )
-     > row format delimited fields termonated by '\t';
+     > row format delimited fields terminated by '\t';
 hive > load data local inpath 'basics/art_data.tsv' overwrite int table art;
 
 
